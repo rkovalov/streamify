@@ -21,21 +21,21 @@ export const Status = ({
         <span className="grow">Me</span>
         <div>
           {muted ? (
-            <Icon children={icon["muted"]} />
+            <Icon>{icon["muted"]}</Icon>
           ) : (
-            <Icon children={icon["not-muted"]} />
+            <Icon>{icon["not-muted"]}</Icon>
           )}
         </div>
         <div>
           {!visible ? (
-            <Icon children={icon["not-visible"]} />
+            <Icon>{icon["not-visible"]}</Icon>
           ) : (
-            <Icon children={icon["visible"]} />
+            <Icon>{icon["visible"]}</Icon>
           )}
         </div>
       </div>
       {usersEntries.map(([id]) => (
-        <div className="flex gap-2 items-center pr-4">
+        <div key={id} className="flex gap-2 items-center pr-4">
           <img
             className="rounded-full w-8 h-8"
             src={avatars[id]}
@@ -44,16 +44,16 @@ export const Status = ({
           <span className="grow">{names[id]}</span>
           <div>
             {isMuted[id] ? (
-              <Icon children={icon["muted"]} />
+              <Icon>{icon["muted"]}</Icon>
             ) : (
-              <Icon children={icon["not-muted"]} />
+              <Icon>{icon["not-muted"]}</Icon>
             )}
           </div>
           <div>
             {isHidden[id] ? (
-              <Icon children={icon["not-visible"]} />
+              <Icon>{icon["not-visible"]}</Icon>
             ) : (
-              <Icon children={icon["visible"]} />
+              <Icon>{icon["visible"]}</Icon>
             )}
           </div>
         </div>

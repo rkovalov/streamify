@@ -4,7 +4,7 @@
 import { useState } from "react";
 import { useMediaStream } from "@/hooks";
 // import { getUserProfileData } from "@/services/profile.service";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+// import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { Lobby, LoaderError, Room } from "@/components";
 
 const FAILURE_MSG =

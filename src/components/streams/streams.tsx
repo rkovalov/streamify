@@ -1,10 +1,10 @@
 import { useContext } from "react";
 
 import { UsersStateContext } from "@/contexts/users-settings";
+import { Nullable } from "@/types";
 
 import { MyStream } from "./my-stream";
 import { OtherStreams } from "./other-streams";
-import { Nullable } from "@/types";
 
 export function Streams({
   fullscreen,
@@ -13,8 +13,8 @@ export function Streams({
   muted,
   visible,
 }: StreamsProps) {
-  const shared =
-    sharedScreen ?? useContext(UsersStateContext).sharedScreenTrack;
+  const sharedScreenTrack = useContext(UsersStateContext).sharedScreenTrack;
+  const shared = sharedScreen ?? sharedScreenTrack;
 
   return (
     <div
