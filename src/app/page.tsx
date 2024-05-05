@@ -7,8 +7,14 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 
 import { Header } from "@/components";
 import { createRoomId, createHost } from "@/utils";
+import { toast } from "react-toastify";
 
-// import "react-toastify/dist/ReactToastify.css";
+if (typeof window !== "undefined") {
+  // @ts-ignore
+  window.toast = toast;
+}
+
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   const user = useUser();
