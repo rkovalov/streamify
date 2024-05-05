@@ -6,15 +6,18 @@ import { NextApiResponseServerIO } from "@/types";
 
 const socketHandler = (req: NextApiRequest, res: NextApiResponseServerIO) => {
   if (!res.socket.server.io) {
-    console.log("Socket is initializing");
+    console.log("[Socket] - Socket is initializing");
 
     const httpServer = res.socket.server;
     const io = new ServerIO(httpServer, { path: "/api/socketio" });
     res.socket.server.io = io;
 
     io.on("connection", (socket) => {
-      console.log("connected");
+      console.log("[Socket] - connected");
 
+      socket.on("disconnect", (reason) => {
+        console.log("[Socket]: disconected", reason);
+      });
       socket.on("room:join", ({ room, user }) => {
         console.table({
           "room-id": room,

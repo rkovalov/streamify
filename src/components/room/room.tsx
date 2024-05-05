@@ -3,15 +3,14 @@ import { useRouter } from "next/navigation";
 import { MediaConnection } from "peerjs";
 import { toast, ToastContainer } from "react-toastify";
 
-import { LoaderError } from "../loader-error";
-import { Modal } from "../modal";
-
 import { usePeer, useScreen } from "@/hooks";
 import { useMediaStream } from "@/hooks/use-media-stream";
 import { SocketContext } from "@/contexts/socket";
 import { UsersSettingsProvider } from "@/contexts/users-settings";
 import { UsersConnectionProvider } from "@/contexts/users-connection";
 
+import { LoaderError } from "../loader-error";
+import { Modal } from "../modal";
 import { ControlPanel } from "../control-panel";
 import { Chat } from "../chat";
 import { Status } from "../status";
@@ -21,7 +20,6 @@ import { Kind, PeerId } from "@/types";
 
 const FAILURE_MSG =
   "Ooops!!! Couldn't create stream for you. Try again later 🫠";
-const LOADER_STREAM_MSG = "Hold on. Getting your video stream ready... 🚀";
 const LOADER_PEER_MSG = "Setting you up... 🎮";
 
 export function Room({ stream }: { stream: MediaStream }) {
@@ -49,6 +47,7 @@ export function Room({ stream }: { stream: MediaStream }) {
 
   useEffect(() => {
     return () => {
+      console.log("!!!!!!!!!", "DISCONNECT");
       socket.disconnect();
     };
   }, []);

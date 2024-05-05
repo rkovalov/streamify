@@ -30,11 +30,12 @@ export const usePeer = (stream: MediaStream) => {
     (async function createPeerAndJoinRoom() {
       try {
         const peer = new (await import("peerjs")).default();
+        console.log({ peer, socket });
         setPeer(peer);
         setIsLoading(false);
 
         peer.on("open", (id) => {
-          console.log("your device id: ", id);
+          console.log(`[Peer]: your device id: ${id}`);
           setMyId(id);
           socket.emit("room:join", {
             room: params?.roomId,
@@ -48,9 +49,9 @@ export const usePeer = (stream: MediaStream) => {
           });
         });
 
-        peer.on("error", error("Failed to setup peer connection"));
+        peer.on("error", error("[Peer]: Failed to setup peer connection"));
       } catch (e) {
-        error("Unable to create peer")(e);
+        error("[Peer]: Unable to create peer")(e);
       }
     })();
   }, []);

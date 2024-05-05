@@ -1,7 +1,7 @@
 // import Image from "next/image";
 // import { useUser } from "@auth0/nextjs-auth0/client";
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMediaStream } from "@/hooks";
 // import { getUserProfileData } from "@/services/profile.service";
 // import { withPageAuthRequired } from "@auth0/nextjs-auth0";
@@ -14,6 +14,14 @@ const LOADER_STREAM_MSG = "Hold on. Getting your video stream ready... 🚀";
 export default function RoomPage({ params }: { params: { roomId: string } }) {
   // const user = useUser();
   // const user = await getUserProfileData();
+
+  useEffect(() => {
+    console.log("[ROOM PAGE]: mount");
+    return () => {
+      console.log("[ROOM PAGE]: unmount");
+    };
+  }, []);
+
   const [isLobby, setIsLobby] = useState(true);
   const { stream, isLoading } = useMediaStream();
 
