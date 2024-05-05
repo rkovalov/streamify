@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
@@ -32,50 +33,57 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col bg-background-primary">
-      {user.isLoading ? "Loading..." : <Header />}
-      <div className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-3xl lg:w-full lg:pb-28 xl:pb-32">
-            <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div className="sm:text-center lg:text-left">
-                <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                  <span className="block text-gray-200 xl:inline">
-                    Video calls.
-                  </span>{" "}
-                  <span className="block text-emerald-500 xl:inline">
-                    Now "expensive" for everyone.
-                  </span>
-                </h1>
-                <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  For secure business and friendly meetings.
-                </p>
-                <div className="flex gap-4 justify-start mt-4">
-                  <button
-                    onClick={createRoom}
-                    className="p-3 bg-emerald-300 hover:bg-indigo-200 rounded-md text-emerald-800 text-sm founded-medium"
-                  >
-                    Create New Room
-                  </button>
-
-                  <input
-                    onChange={(e: any) => setRoomId(e.target.value)}
-                    placeholder="Enter or paste room id"
-                    className="px-4 py-1 w-80 rounded-md text-emerald-800"
-                  />
-
-                  <button
-                    onClick={joinRoom}
-                    disabled={roomId.length == 0}
-                    className="p-3 bg-emerald-500 hover:bg-indigo-300 rounded-md text-emerald-800 text-sm founded-medium disabled:bg-gray-300 disabled:cursor-not-allowed"
-                  >
-                    Join
-                  </button>
-                </div>
-              </div>
-            </main>
+    <main className="flex gap-10 items-center min-h-screen bg-background-primary p-8 sm:px-24 flex-col md:flex-row">
+      {/* {user.isLoading ? "Loading..." : <Header />} */}
+      <div className="h-full flex content-between flex-1 flex-col px-4 sm:px-8 md:px-12 lg:px-20 xl:px-38">
+        {/* <div className="sm:text-center lg:text-left"> */}
+        <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 md:text-6xl">
+          <span className="block text-gray-200 xl:inline">Video calls.</span>{" "}
+          <span className="block text-emerald-500 xl:inline">
+            Now "expensive" for everyone.
+          </span>
+        </h1>
+        <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+          For secure business and friendly meetings.
+        </p>
+        <div className="flex conetent-center gap-4 justify-start mt-4 flex-col sm:flex-row">
+          <div>
+            <button
+              onClick={createRoom}
+              className="p-3 bg-emerald-300 hover:bg-indigo-200 rounded-md text-emerald-800 text-sm founded-medium"
+            >
+              Create
+            </button>
           </div>
+
+          <span className="flex items-center">or</span>
+          <div className="flex gap-4">
+            <input
+              onChange={(e: any) => setRoomId(e.target.value)}
+              placeholder="Enter room id"
+              className="flex-1 px-4 py-1 rounded-md text-emerald-800"
+            />
+
+            <button
+              onClick={joinRoom}
+              disabled={roomId.length == 0}
+              className="p-3 bg-emerald-500 hover:bg-indigo-300 rounded-md text-emerald-800 text-sm founded-medium disabled:bg-gray-300 disabled:cursor-not-allowed"
+            >
+              Join
+            </button>
+          </div>
+
+          {/* </div> */}
         </div>
+      </div>
+      <div className="flex-1 h-1/5 sm:h-1/3 lg:h-full lg:w-1/2 relative">
+        <Image
+          src="/hero.webp"
+          width="600"
+          height="600"
+          // className="w-6/10"
+          alt="hero"
+        />
       </div>
     </main>
   );
